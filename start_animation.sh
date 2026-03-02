@@ -1,3 +1,3 @@
 #!/bin/bash
 cd "$(dirname "$0")"
-./.venv/bin/python3 animated_road.py
+uv run animated_road.py
