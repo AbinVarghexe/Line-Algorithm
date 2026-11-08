@@ -1,65 +1,121 @@
-# Road Perspective with Animated Cars
+<p align="center">
+  <img src="assets/banner.svg" alt="Road Perspective 3D Line Drawing Algorithm in Python" width="100%" />
+</p>
 
-This project uses Python and `matplotlib` to create a scenic 3D road perspective using **Line Drawing Algorithms** (Bresenham's Algorithm) and **Projection Techniques**. 
+<p align="center">
+  <strong>3D Road Perspective Projection, Bresenham Line Generation, and Real-Time Vehicle Animation in Python</strong>
+</p>
 
-It includes two main scripts:
-- A static scene generator (`road_perspective.py`)
-- An animated scene with moving cars (`animated_road.py`)
+<p align="center">
+  <a href="https://github.com/AbinVarghexe/Line-Algorithm/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="License" /></a>
+  <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/Python-3.8%2B-3776AB.svg?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.8+" /></a>
+  <a href="https://matplotlib.org/"><img src="https://img.shields.io/badge/Graphics-Matplotlib-11557C.svg?style=for-the-badge" alt="Matplotlib" /></a>
+  <a href="https://numpy.org/"><img src="https://img.shields.io/badge/Compute-NumPy-013243.svg?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy" /></a>
+  <a href="https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm"><img src="https://img.shields.io/badge/Algorithm-Bresenham's%20Line-FF007F.svg?style=for-the-badge" alt="Bresenham" /></a>
+</p>
+
+---
+
+## Overview
+
+**Line-Algorithm** is a mathematical computer graphics simulation in Python demonstrating 3D perspective projection and rasterization using fundamental computational geometry algorithms:
+- **Bresenham's Integer Line Drawing Algorithm** for aliasing-free ray tracing between vanishing points and the view frustum.
+- **Midpoint Circle Algorithm** for rendering synthetic celestial bodies (sun, moon, wheels).
+- **Z-Buffer Scale Invariance & Vanishing Point Projections** mapping world coordinates $(X, Y, Z)$ into 2D camera viewport pixels $(x', y')$.
+- **Matplotlib Animation Engine** orchestrating independent vehicles traveling along opposing lanes with realistic non-linear optical scaling.
+
+```
+       World Coordinates (X, Y, Z)
+                   |
+                   v
+       Perspective Projection Matrix:
+       x' = (X * d) / Z + x_center
+       y' = (Y * d) / Z + y_center
+                   |
+                   v
+       Bresenham Line Rasterization (dx, dy, D = 2dy - dx)
+                   |
+                   v
+       Matplotlib FuncAnimation (60 FPS Double Buffer)
+```
+
+---
+
+## Theoretical Formulations
+
+### 1. Bresenham's Line Generation Algorithm
+Bresenham's algorithm determines the points of an $n$-dimensional raster that should be selected in order to form a close approximation to a straight line between two points using only fast integer addition and bit shifts:
+
+$$D_0 = 2\Delta y - \Delta x$$
+
+For each step along $x$:
+- If $D_k < 0$: $D_{k+1} = D_k + 2\Delta y$, coordinate $(x_{k+1}, y_k)$
+- If $D_k \ge 0$: $D_{k+1} = D_k + 2\Delta y - 2\Delta x$, coordinate $(x_{k+1}, y_k + 1)$
+
+### 2. Vanishing Point 3D-to-2D Projection
+Road edges converge at an infinite horizon vanishing point $(V_x, V_y)$:
+
+$$x(t) = V_x + (B_x - V_x) \cdot t$$
+
+$$y(t) = V_y + (B_y - V_y) \cdot t^p$$
+
+Where $t \in [0, 1]$ represents depth parameterization and $p > 1$ introduces non-linear vertical perspective compression.
+
+---
 
 ## Features
 
-- **3D to 2D Projection**: Uses a focal length-based perspective projection to convert 3D coordinates into a 2D plane.
-- **Bresenham's Line Algorithm**: Custom implementation of Bresenham's line algorithm to render road markings and edges using integer coordinates.
-- **Static Scenery**: Features a detailed dynamic environment with sky, ground, sun, clouds, mountains, lampposts, and flanking trees.
-- **Animated Cars**: Multiple uniquely colored cars driving on the road, complete with a suspension bounce effect (in `animated_road.py`).
-- **Optimization**: Uses matplotlib's `blit=True` mechanism for efficient rendering during the animation.
+- **Static & Dynamic Modes**: Choose between a high-resolution single-frame projection renderer (`road_perspective.py`) or an interactive animated simulation (`animated_road.py`).
+- **Dynamic Multi-Vehicle Traffic**: Simulates oncoming and receding vehicles with proportional perspective scaling (objects shrink exponentially as they approach the horizon).
+- **Procedural Scenery**: Generates roadside utility poles, segmented dashed highway lane markers, mountain silhouettes, and a retrowave horizon sun.
+- **Cross-Platform Zero-Dependency**: Requires only standard `numpy` and `matplotlib`.
 
-## Prerequisites
+---
 
-Make sure you have Python 3 installed along with the following libraries:
+## Getting Started
 
-```bash
-pip install matplotlib numpy
-```
+### 1. Prerequisites
 
-## File Structure
+- Python 3.8 or later
+- Virtual environment (recommended)
 
-- `road_perspective.py` - Script for generating the static 3D perspective scene.
-- `animated_road.py` - Script for the interactive animation loop with moving cars.
-- `start_animation.sh` - Convenience shell script to start the animation natively.
-- `CODE_EXPLANATION.md` - Detailed explanation of the mathematical logic, Bresenham's algorithm, and projections used in this project.
-- `road_perspective.png` - Sample static output generated by `road_perspective.py`.
-
-## Usage
-
-### 1. Static Scene
-
-To generate and save a static image of the road perspective (`road_perspective.png`), run:
+### 2. Installation
 
 ```bash
-python3 road_perspective.py
+# Clone the repository
+git clone https://github.com/AbinVarghexe/Line-Algorithm.git
+cd Line-Algorithm
+
+# Install dependencies
+pip install numpy matplotlib
 ```
 
-### 2. Animated Scene
-
-To run the interactive matplotlib animation with moving cars, run:
+### 3. Execution
 
 ```bash
-python3 animated_road.py
+# Run the animated real-time simulation
+python animated_road.py
+
+# Alternatively, generate the static high-res graphic output
+python road_perspective.py
 ```
 
-Alternatively, you can use the provided convenience bash script:
+---
 
-```bash
-./start_animation.sh
+## Repository Structure
+
+```
+Line-Algorithm/
+├── assets/
+│   └── banner.svg               # Vector visual banner
+├── animated_road.py             # Real-time animated traffic simulation
+├── road_perspective.py          # Static line rasterization & perspective generator
+├── road_perspective.png         # Rendered image artifact
+├── CODE_EXPLANATION.md          # In-depth algorithmic breakdown
+├── start_animation.sh           # Shell launch shortcut
+└── README.md                    # Documentation & mathematical formulas
 ```
 
-## How It Works
+## License
 
-The core mechanics of the rendering approach include:
-
-1. **`project(x, y, z)` logic**: A single-point perspective projection scales the `x` and `y` properties inversely proportional to their depth `z` based on a predefined focal length, creating the illusion of 3D depth.
-2. **Bresenham's Application**: Used exclusively for computing valid discrete integer pixel coordinates for the road lines.
-3. **Continuous Animation Loop**: In `animated_road.py`, the cars update their `z` coordinates every frame. A sine-wave function is applied to simulate suspension bouncing as velocity increases. 
-
-*For more technical details including code snippets, please refer to the `CODE_EXPLANATION.md` file.*
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

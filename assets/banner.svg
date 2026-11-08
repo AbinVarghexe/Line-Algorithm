@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 440" width="100%" height="100%">
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0b001a"/>
+      <stop offset="40%" stop-color="#2a0845"/>
+      <stop offset="70%" stop-color="#641470"/>
+      <stop offset="100%" stop-color="#f72585"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fee440"/>
+      <stop offset="50%" stop-color="#f72585"/>
+      <stop offset="100%" stop-color="#7209b7"/>
+    </linearGradient>
+    <linearGradient id="road" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#120224"/>
+      <stop offset="100%" stop-color="#030008"/>
+    </linearGradient>
+    <linearGradient id="neon-cyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4cc9f0"/>
+      <stop offset="100%" stop-color="#4361ee"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="20" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="20" x2="40" y2="20" stroke="#f72585" stroke-width="0.8" opacity="0.4"/>
+      <line x1="40" y1="0" x2="40" y2="20" stroke="#4cc9f0" stroke-width="0.8" opacity="0.3"/>
+    </pattern>
+  </defs>
+
+  <!-- Sky Ground -->
+  <rect width="1280" height="220" fill="url(#sky)"/>
+
+  <!-- Retrowave Sun with Venetian Blind Horizontal Stripes -->
+  <g transform="translate(640, 200)">
+    <circle cx="0" cy="0" r="110" fill="url(#sun)"/>
+    <rect x="-115" y="-10" width="230" height="3" fill="#2a0845"/>
+    <rect x="-115" y="6" width="230" height="5" fill="#2a0845"/>
+    <rect x="-115" y="24" width="230" height="7" fill="#2a0845"/>
+    <rect x="-115" y="44" width="230" height="9" fill="#2a0845"/>
+    <rect x="-115" y="66" width="230" height="12" fill="#2a0845"/>
+    <rect x="-115" y="90" width="230" height="15" fill="#2a0845"/>
+  </g>
+
+  <!-- Mountain Silhouette Horizon -->
+  <polygon points="0,220 110,180 230,220 380,165 520,220 640,195 760,220 900,160 1050,220 1170,175 1280,220" fill="#140226" opacity="0.85"/>
+  <polygon points="0,220 180,190 310,220 440,185 580,220 720,180 860,220 1000,190 1140,220 1280,195 1280,220" fill="#090014"/>
+
+  <!-- Ground Plane -->
+  <rect x="0" y="220" width="1280" height="220" fill="#05010d"/>
+
+  <!-- Synthwave Perspective Road Grid -->
+  <polygon points="640,220 640,220 1060,440 220,440" fill="url(#road)"/>
+
+  <!-- Perspective Vanishing Lines (Road Boundaries & Lanes) -->
+  <line x1="640" y1="220" x2="220" y2="440" stroke="#4cc9f0" stroke-width="4" opacity="0.9"/>
+  <line x1="640" y1="220" x2="1060" y2="440" stroke="#f72585" stroke-width="4" opacity="0.9"/>
+  <line x1="640" y1="220" x2="640" y2="440" stroke="#fee440" stroke-width="3" stroke-dasharray="24 16"/>
+  <line x1="640" y1="220" x2="430" y2="440" stroke="#7209b7" stroke-width="1.5" stroke-dasharray="10 10" opacity="0.6"/>
+  <line x1="640" y1="220" x2="850" y2="440" stroke="#7209b7" stroke-width="1.5" stroke-dasharray="10 10" opacity="0.6"/>
+
+  <!-- Horizontal Perspective Grid Lines -->
+  <line x1="600" y1="230" x2="680" y2="230" stroke="#4cc9f0" stroke-width="1" opacity="0.3"/>
+  <line x1="560" y1="245" x2="720" y2="245" stroke="#4cc9f0" stroke-width="1.2" opacity="0.4"/>
+  <line x1="510" y1="265" x2="770" y2="265" stroke="#4cc9f0" stroke-width="1.4" opacity="0.5"/>
+  <line x1="450" y1="295" x2="830" y2="295" stroke="#4cc9f0" stroke-width="1.6" opacity="0.6"/>
+  <line x1="370" y1="335" x2="910" y2="335" stroke="#4cc9f0" stroke-width="2" opacity="0.7"/>
+  <line x1="270" y1="390" x2="1010" y2="390" stroke="#4cc9f0" stroke-width="2.5" opacity="0.8"/>
+
+  <!-- Left Header Overlay -->
+  <g transform="translate(60, 50)">
+    <rect x="0" y="0" width="260" height="32" rx="16" fill="#1b0933" stroke="#f72585" stroke-width="1.2"/>
+    <circle cx="16" cy="16" r="4" fill="#f72585"/>
+    <text x="30" y="21" fill="#fee440" font-family="monospace" font-size="12" font-weight="700" letter-spacing="1">BRESENHAM • 3D PROJECTION</text>
+
+    <text x="0" y="80" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="42" font-weight="900" letter-spacing="-1">Road Perspective</text>
+    <text x="0" y="125" fill="#4cc9f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="38" font-weight="800" letter-spacing="-1">Line Algorithms in Python</text>
+
+    <text x="0" y="160" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="400">
+      Mathematical Vanishing-Point Raycasting, Bresenham Rasterization &amp; Vehicle Animation
+    </text>
+  </g>
+
+  <!-- Right Side: Vehicle Wireframe at Perspective Distance -->
+  <g transform="translate(760, 310)">
+    <!-- Rear of Sports Car (Outrun Style) -->
+    <polygon points="20,50 140,50 130,25 30,25" fill="#7209b7" stroke="#f72585" stroke-width="2"/>
+    <polygon points="35,25 125,25 115,10 45,10" fill="#1b0933" stroke="#4cc9f0" stroke-width="1.5"/>
+    <!-- Glowing Neon Taillights -->
+    <rect x="25" y="32" width="30" height="10" rx="3" fill="#f72585"/>
+    <rect x="105" y="32" width="30" height="10" rx="3" fill="#f72585"/>
+    <!-- Twin Exhaust -->
+    <ellipse cx="60" cy="52" rx="6" ry="3" fill="#4cc9f0"/>
+    <ellipse cx="100" cy="52" rx="6" ry="3" fill="#4cc9f0"/>
+  </g>
+</svg>
